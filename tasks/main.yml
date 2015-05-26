@@ -21,6 +21,9 @@
   command: openssl dhparam -out /etc/prosody/certs/dh-2048.pem 2048 creates=/etc/prosody/certs/dh-2048.pem
   notify: restart prosody
 
+- name: Enable prosody on boot
+  service: name=prosody state=started enabled=yes
+
 - name: Set firewall rules for Prosody
   ufw: port={{ item }} proto=tcp rule=allow
   with_items:
