@@ -11,8 +11,6 @@
   with_items:
     - lua-event
     - lua-zlib
-    - lua-socket
-    - lua-expat
     - "{{ prosody_package }}"
 
 - name: Configure Prosody
