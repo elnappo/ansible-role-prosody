@@ -1,0 +1,31 @@
+---
+# tasks file for ansible-role-prosody
+- name: Add Prosody repository key
+  apt_key: url=https://prosody.im/files/prosody-debian-packages.key state=present
+
+- name: Add Prosody repository
+  apt_repository: repo="deb http://packages.prosody.im/debian {{ ansible_distribution_release }} main"
+
+- name: Install Prosody
+  apt: name={{ item }}
+  with_items:
+    - lua-event
+    - lua-zlib
+    - lua-socket
+    - lua-expat
+    - "{{ prosody_package }}"
+
+- name: Configure Prosody
+  template: src=prosody.cfg.lua dest=/etc/prosody/prosody.cfg.lua.test group=root owner=root mode=0755
+  notify: restart prosody
+
+- name: Create parameters for Diffie–Hellman (could take a while)
+  command: openssl dhparam -out /etc/prosody/certs/dh-2048.pem 2048 creates=/etc/prosody/certs/dh-2048.pem
+  notify: restart prosody
+
+- name: Set firewall rules for Prosody
+  ufw: port={{ item }} proto=tcp rule=allow
+  with_items:
+    - 5222
+    - 5269
+  when: prosody_setup_ufw
