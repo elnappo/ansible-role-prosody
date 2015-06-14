@@ -14,14 +14,14 @@
     - "{{ prosody_package }}"
 
 - name: Configure Prosody
-  template: src=prosody.cfg.lua dest=/etc/prosody/prosody.cfg.lua.test group=root owner=root mode=0755
+  template: src=prosody.cfg.lua dest=/etc/prosody/prosody.cfg.lua group=root owner=root mode=0755
   notify: restart prosody
 
 - name: Create parameters for Diffie–Hellman (could take a while)
   command: openssl dhparam -out /etc/prosody/certs/dh-2048.pem 2048 creates=/etc/prosody/certs/dh-2048.pem
   notify: restart prosody
 
-- name: Enable prosody on boot
+- name: Start and enable prosody on boot
   service: name=prosody state=started enabled=yes
 
 - name: Set firewall rules for Prosody
