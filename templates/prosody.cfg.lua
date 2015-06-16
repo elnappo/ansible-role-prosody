@@ -66,7 +66,7 @@ modules_disabled = {
 
 -- Disable account creation by default, for security
 -- For more information see http://prosody.im/doc/creating_accounts
-allow_registration = {{ prosody_allow_registration }}
+allow_registration = {{ bool(prosody_allow_registration) }}
 
 -- These are the SSL/TLS-related settings. If you don't want
 -- to use SSL/TLS, you may comment or remove this
@@ -88,7 +88,7 @@ s2s_require_encryption = true
 -- NOTE: Your version of LuaSec must support certificate verification!
 -- For more information see http://prosody.im/doc/s2s#security
 
-s2s_secure_auth = {{ prosody_s2s_secure_auth }}
+s2s_secure_auth = {{ bool(prosody_s2s_secure_auth) }}
 
 -- Many servers don't support encryption or have invalid or self-signed
 -- certificates. You can list domains here that will not be required to
