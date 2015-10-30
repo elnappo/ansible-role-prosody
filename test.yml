@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    prosody_hosts:
+      - { domain: example.com}
 
   roles:
     - { role: ansible-role-prosody }

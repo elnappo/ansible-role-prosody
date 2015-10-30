@@ -74,6 +74,12 @@ ssl = {
 	key = "/etc/prosody/certs/localhost.key";
 	certificate = "/etc/prosody/certs/localhost.crt";
 	dhparam = "/etc/prosody/certs/dh-2048.pem";
+	{% if prosody_ssl_protocol is defined %}
+	protocol = "{{ prosody_ssl_protocol }}"
+	{% endif %}
+	{% if prosody_ssl_ciphers is defined %}
+	ciphers = "{{ prosody_ssl_ciphers }}"
+	{% endif %}
 }
 
 -- Force clients to use encrypted connections? This option will
