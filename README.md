@@ -13,6 +13,7 @@ Ubuntu or Debian
 * `prosody_s2s_secure_domains: [ jabber.org, jabber.ccc.de, jabber.de ]`
 * `prosody_s2s_secure_auth: False`
 * `prosody_authentication: internal_hashed`
+* `prosody_dhparam_length: 2048`
 * `prosody_hosts: [ {domain: example.com} ]`
 * `prosody_setup_ufw: True`
 
@@ -33,8 +34,9 @@ None.
           ssl_key: /etc/prosody/certs/example.com.key,
           ssl_cert: /etc/prosody/certs/example.com.crt }
     prosody_package: prosody-0.10
-    prosody_ssl_ciphers: "ECDH:DH:!CAMELLIA128:!3DES:!MD5:!RC4:!aNULL:!NULL:!EXPORT:!LOW:!MEDIUM"
-    prosody_ssl_protocol: tlsv1_1+ # tlsv1_1+ supported since Prosody 0.10
+    prosody_ssl_ciphers: "ECDH:DH:!CAMELLIA128:!AES128:!SHA1:!3DES:!MD5:!RC4:!aNULL:!NULL:!EXPORT:!LOW:!MEDIUM"
+    prosody_ssl_protocol: tlsv1_2+ # tlsv1_2+ supported since Prosody 0.10
+    prosody_dhparam_length: 4096
 
   roles:
    - { role: elnappoo.prosody }

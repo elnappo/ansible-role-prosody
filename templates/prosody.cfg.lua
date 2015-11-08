@@ -42,16 +42,16 @@ use_libevent = true
 modules_enabled = {
 
 	-- Generally required
-		"roster"; -- Allow users to have a roster. Recommended ;)
-		"saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
-		"tls"; -- Add support for secure TLS on c2s/s2s connections
-		"dialback"; -- s2s dialback support
-		"disco"; -- Service discovery
+	"roster"; -- Allow users to have a roster. Recommended ;)
+	"saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
+	"tls"; -- Add support for secure TLS on c2s/s2s connections
+	"dialback"; -- s2s dialback support
+	"disco"; -- Service discovery
 
 	-- Other modules
-	{% for module in prosody_modules %}
+{% for module in prosody_modules %}
 	"{{ module }}";
-	{% endfor %}
+{% endfor %}
 
 }
 
@@ -73,13 +73,13 @@ allow_registration = {{ bool(prosody_allow_registration) }}
 ssl = {
 	key = "/etc/prosody/certs/localhost.key";
 	certificate = "/etc/prosody/certs/localhost.crt";
-	dhparam = "/etc/prosody/certs/dh-2048.pem";
-	{% if prosody_ssl_protocol is defined %}
-	protocol = "{{ prosody_ssl_protocol }}"
-	{% endif %}
-	{% if prosody_ssl_ciphers is defined %}
-	ciphers = "{{ prosody_ssl_ciphers }}"
-	{% endif %}
+	dhparam = "/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem";
+{% if prosody_ssl_protocol is defined %}
+	protocol = "{{ prosody_ssl_protocol }}";
+{% endif %}
+{% if prosody_ssl_ciphers is defined %}
+	ciphers = "{{ prosody_ssl_ciphers }}";
+{% endif %}
 }
 
 -- Force clients to use encrypted connections? This option will
