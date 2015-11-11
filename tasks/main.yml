@@ -9,7 +9,9 @@
 - name: Install Prosody
   apt: name={{ item }}
   with_items:
+    - mercurial
     - lua-event
+    - lua-bitop
     - lua-zlib
     - "{{ prosody_package }}"
 
@@ -20,6 +22,19 @@
 - name: Create parameters for Diffie–Hellman (could take a while)
   command: "openssl dhparam -out /etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem {{ prosody_dhparam_length }} creates=/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem"
   notify: restart prosody
+
+- name: Get latest external prosody modules
+  hg:
+    repo: https://hg.prosody.im/prosody-modules/
+    dest: /usr/share/prosody-modules
+
+- name: Enable external modules
+  file:
+    src: "/usr/share/prosody-modules/mod_{{ item }}/mod_{{ item }}.lua"
+    dest: "/usr/lib/prosody/modules/mod_{{ item }}.lua"
+    state: link
+  with_items: prosody_external_modules
+  notify: reload prosody 
 
 - name: Start and enable prosody on boot
   service: name=prosody state=started enabled=yes
