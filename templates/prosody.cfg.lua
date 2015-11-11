@@ -51,6 +51,11 @@ modules_enabled = {
 	-- Other modules
 {% for module in prosody_modules %}
 	"{{ module }}";
+{% endfor %}A
+
+    -- External
+{% for module in prosody_external_modules %}
+     "{{ module }}";
 {% endfor %}
 
 }
