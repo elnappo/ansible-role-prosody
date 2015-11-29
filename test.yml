@@ -2,8 +2,11 @@
 - hosts: localhost
   remote_user: root
   vars:
-    prosody_hosts:
-      - { domain: example.com}
+    prosody_package: prosody-0.10
+    prosody_dhparam_length: 1024
+    prosody_external_modules:
+      - mod_ipcheck
+      - mod_c2s_conn_throttle
 
   roles:
     - { role: ansible-role-prosody }

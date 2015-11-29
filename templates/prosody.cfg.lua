@@ -36,6 +36,11 @@ admins = { {{ quoted_list(prosody_admins) }} }
 -- For more information see: http://prosody.im/doc/libevent
 use_libevent = true
 
+{% if prosody_external_modules |length > 0 %}
+-- These paths are searched in the order specified, and before the default path
+plugin_paths = { "/usr/share/prosody-external-modules" }
+{% endif %}
+
 -- This is the list of modules Prosody will load on startup.
 -- It looks for mod_modulename.lua in the plugins folder, so make sure that exists too.
 -- Documentation on modules can be found at: http://prosody.im/doc/modules
