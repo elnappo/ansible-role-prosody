@@ -1,4 +1,6 @@
 ---
+sudo: required
+dist: trusty
 language: python
 python: "2.7"
 before_install:
@@ -11,8 +13,8 @@ install:
   - echo localhost > inventory
 script:
   - ansible-playbook -i inventory --syntax-check --list-tasks test.yml
-  - ansible-playbook -i inventory --connection=local --sudo -vvvv test.yml
-  - ansible-playbook -i inventory --connection=local --sudo -vvvv test.yml
+  - ansible-playbook -i inventory --connection=local --become -vvvv test.yml
+  - ansible-playbook -i inventory --connection=local --become -vvvv test.yml
 after_script:
   - prosodyctl status
   - prosodyctl check
