@@ -29,6 +29,7 @@ None.
 
 ```yaml
 - hosts: servers
+  remote_user: root
   vars:
     prosody_hosts:
       - { domain: example.com,
@@ -49,4 +50,4 @@ MIT
 
 ## Author Information
 
-elnappo <elnappoo@gmail.com>
+elnappo <elnappo@nerdpol.io>
