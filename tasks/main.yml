@@ -1,13 +1,17 @@
 ---
 # tasks file for ansible-role-prosody
 - name: Add Prosody repository key
-  apt_key: url=https://prosody.im/files/prosody-debian-packages.key state=present
+  apt_key:
+    url: https://prosody.im/files/prosody-debian-packages.key
+    state: present
 
 - name: Add Prosody repository
-  apt_repository: repo="deb http://packages.prosody.im/debian {{ ansible_distribution_release }} main"
+  apt_repository:
+    repo: "deb http://packages.prosody.im/debian {{ ansible_distribution_release }} main"
 
 - name: Install Prosody
-  apt: name={{ item }}
+  apt:
+    name: "{{ item }}"
   with_items:
     - mercurial
     - lua-event
@@ -15,21 +19,34 @@
     - "{{ prosody_package }}"
 
 - name: Configure Prosody
-  template: src=prosody.cfg.lua dest=/etc/prosody/prosody.cfg.lua group=root owner=root mode=0755
+  template:
+    src: prosody.cfg.lua
+    dest: /etc/prosody/prosody.cfg.lua
+    group: root
+    owner: root
+    mode: 0755
   notify: restart prosody
 
 - name: Create parameters for Diffie–Hellman (could take a while)
-  command: "openssl dhparam -out /etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem {{ prosody_dhparam_length }} creates=/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem"
+  command: "openssl dhparam -out /etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem {{ prosody_dhparam_length }}"
+  args:
+    creates: "/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem"
   notify: restart prosody
 
 - name: Get prosody external modules repository
   hg: repo=https://hg.prosody.im/prosody-modules/ dest=/usr/share/prosody-external-modules
 
 - name: Start and enable prosody on boot
-  service: name=prosody state=started enabled=yes
+  service:
+    name: prosody
+    state: started
+    enabled: yes
 
 - name: Set firewall rules for Prosody
-  ufw: port={{ item }} proto=tcp rule=allow
+  ufw:
+    port: "{{ item }}"
+    proto: tcp
+    rule: allow
   with_items:
     - 5222
     - 5269
