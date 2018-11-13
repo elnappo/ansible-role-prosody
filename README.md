@@ -41,7 +41,7 @@ None.
     prosody_dhparam_length: 4096
 
   roles:
-   - { role: elnappoo.prosody }
+   - { role: elnappo.prosody }
 ```
 
 ## License
