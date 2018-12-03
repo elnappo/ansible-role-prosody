@@ -1,7 +1,11 @@
 ---
 # handlers file for ansible-role-prosody
 - name: reload prosody
-  service: name=prosody state=reloaded
+  service:
+    name: prosody
+    state: reloaded
 
 - name: restart prosody
-  service: name=prosody state=restarted
+  service:
+    name: prosody
+    state: restarted
