@@ -11,12 +11,7 @@
 
 - name: Install Prosody and dependencies
   apt:
-    name: "{{ item }}"
-  with_items:
-    - mercurial
-    - lua-event
-    - lua-zlib
-    - "{{ prosody_package }}"
+    name: ['mercurial', 'lua-event', 'lua-zlib', '{{ prosody_package }}']
 
 - name: Configure Prosody
   template:
@@ -34,13 +29,17 @@
 - name: Get prosody external modules repository
   hg:
     repo: https://hg.prosody.im/prosody-modules/
+    revision: default
+    update: true
     dest: /usr/share/prosody-external-modules
+  tags:
+    - skip_ansible_lint
 
 - name: Start and enable prosody on boot
   service:
     name: prosody
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Set firewall rules for Prosody
   ufw:

@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    prosody_package: prosody
+    prosody_dhparam_length: 1024
+    prosody_external_modules:
+      - mod_ipcheck
+      - mod_c2s_conn_throttle
+
+  roles:
+    - ansible-role-prosody

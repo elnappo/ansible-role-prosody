@@ -1,9 +1,9 @@
 ---
 # defaults file for ansible-role-prosody
-prosody_setup_ufw: True
+prosody_setup_ufw: true
 prosody_package: prosody
 prosody_admins: []
-prosody_allow_registration: False
+prosody_allow_registration: false
 prosody_modules:
   - private
   - vcard
@@ -14,7 +14,7 @@ prosody_s2s_secure_domains:
   - jabber.org
   - jabber.ccc.de
   - jabber.de
-prosody_s2s_secure_auth: False
+prosody_s2s_secure_auth: true
 prosody_authentication: internal_hashed
 prosody_dhparam_length: 2048
 prosody_hosts:
