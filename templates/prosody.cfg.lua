@@ -76,8 +76,8 @@ allow_registration = {{ bool(prosody_allow_registration) }}
 -- These are the SSL/TLS-related settings. If you don't want
 -- to use SSL/TLS, you may comment or remove this
 ssl = {
-	key = "/etc/prosody/certs/localhost.key";
-	certificate = "/etc/prosody/certs/localhost.crt";
+	key = "{{ prosody_key }}";
+	certificate = "{{ prosody_cert }}";
 	dhparam = "/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem";
 {% if prosody_ssl_protocol is defined %}
 	protocol = "{{ prosody_ssl_protocol }}";

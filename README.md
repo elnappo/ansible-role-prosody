@@ -22,6 +22,8 @@ Ubuntu or Debian
 * `prosody_setup_ufw: True`
 * `prosody_components: []`
 * `prosody_configuration_blocks: []`
+* `prosody_key: /etc/prosody/certs/localhost.key`
+* `prosody_cert: /etc/prosody/certs/localhost.crt`
 
 ### Optional Role Variables (with sample values)
 
