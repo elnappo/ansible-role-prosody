@@ -144,6 +144,13 @@ log = {
 	"*syslog";
 }
 
+{% if prosody_configuration_blocks is defined %}
+{% for config_block in prosody_configuration_blocks %}
+{{ config_block.comment | comment(decoration="--") }}
+{{ config_block.conf }}
+{% endfor %}
+{% endif %}
+
 ----------- Virtual hosts -----------
 -- You need to add a VirtualHost entry for each domain you wish Prosody to serve.
 -- Settings under each VirtualHost entry apply *only* to that host.

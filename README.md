@@ -21,6 +21,7 @@ Ubuntu or Debian
 * `prosody_hosts: [ {domain: example.com} ]`
 * `prosody_setup_ufw: True`
 * `prosody_components: []`
+* `prosody_configuration_blocks: []`
 
 ### Optional Role Variables (with sample values)
 
