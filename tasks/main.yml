@@ -1,23 +1,15 @@
 ---
 # tasks file for ansible-role-prosody
-- name: Add Prosody repository key
-  apt_key:
-    url: https://prosody.im/files/prosody-debian-packages.key
-    state: present
 
-- name: Add Prosody repository
-  apt_repository:
-    repo: "deb http://packages.prosody.im/debian {{ ansible_distribution_release }} main"
-
-- name: Install Prosody and dependencies
-  apt:
-    name: ['mercurial', 'lua-event', 'lua-zlib', '{{ prosody_package }}']
+- name: Include OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+- name: Include OS specific tasks
+  include: "install-{{ ansible_os_family }}.yml"
 
 - name: Configure Prosody
   template:
     src: prosody.cfg.lua
     dest: /etc/prosody/prosody.cfg.lua
-    group: root
     owner: root
     mode: 0755
   notify: restart prosody
