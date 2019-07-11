@@ -20,6 +20,7 @@ Ubuntu or Debian
 * `prosody_dhparam_length: 2048`
 * `prosody_hosts: [ {domain: example.com} ]`
 * `prosody_setup_ufw: True`
+* `prosody_components: []`
 
 ### Optional Role Variables (with sample values)
 

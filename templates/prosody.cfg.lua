@@ -177,3 +177,12 @@ VirtualHost "{{ host.domain }}"
 --
 --Component "gateway.example.com"
 --	component_secret = "password"
+
+{% if prosody_components is defined %}
+{% for component in prosody_components %}
+Component "{{ component.domain }}" "{{ component.type }}"
+{% if component.conf is defined %}
+    {{ component.conf }}
+{% endif %}
+{% endfor %}
+{% endif %}
