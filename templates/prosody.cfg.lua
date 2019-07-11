@@ -58,6 +58,11 @@ modules_enabled = {
 	"{{ module }}";
 {% endfor %}
 
+	-- External modules
+{% for module in prosody_external_modules %}
+	"{{ module }}";
+{% endfor %}
+
 }
 
 -- These modules are auto-loaded, but should you want
