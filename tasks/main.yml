@@ -29,6 +29,20 @@
   tags:
     - skip_ansible_lint
 
+- name: Create prosody log directory
+  file:
+    state: directory
+    path: /var/log/prosody
+    owner: "{{ prosody_user }}"
+    mode: 0755
+
+- name: Create prosody pid directory
+  file:
+    state: directory
+    path: /var/run/prosody
+    owner: "{{ prosody_user }}"
+    mode: 0755
+
 - name: Start and enable prosody on boot
   service:
     name: prosody
