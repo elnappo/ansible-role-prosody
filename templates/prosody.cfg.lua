@@ -34,7 +34,7 @@ admins = { {{ quoted_list(prosody_admins) }} }
 
 -- Enable use of libevent for better performance under high load
 -- For more information see: http://prosody.im/doc/libevent
-use_libevent = true
+use_libevent = {{ prosody_libevent | bool }}
 
 {% if prosody_external_modules |length > 0 %}
 -- These paths are searched in the order specified, and before the default path
