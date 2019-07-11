@@ -14,6 +14,7 @@ Ubuntu or Debian
 * `prosody_allow_registration: False`
 * `prosody_modules: [ private, vcard, ping, register ]`
 * `prosody_external_modules: []`
+* `prosody_external_modules_path: /usr/share/prosody-external-modules`
 * `prosody_s2s_secure_domains: [ jabber.org, jabber.ccc.de, jabber.de ]`
 * `prosody_s2s_secure_auth: False`
 * `prosody_authentication: internal_hashed`

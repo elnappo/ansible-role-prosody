@@ -9,6 +9,7 @@ prosody_modules:
   - vcard
   - ping
   - register
+prosody_external_modules_path: /usr/share/prosody-external-modules
 prosody_external_modules: []
 prosody_s2s_secure_domains:
   - jabber.org
