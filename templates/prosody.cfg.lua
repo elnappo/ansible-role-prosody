@@ -36,6 +36,9 @@ admins = { {{ quoted_list(prosody_admins) }} }
 -- For more information see: http://prosody.im/doc/libevent
 use_libevent = {{ prosody_libevent | bool }}
 
+prosody_user = "{{ prosody_user }}"
+prosody_group = "{{ prosody_group }}"
+
 {% if prosody_external_modules |length > 0 %}
 -- These paths are searched in the order specified, and before the default path
 plugin_paths = { "{{ prosody_external_modules_path }}" }
