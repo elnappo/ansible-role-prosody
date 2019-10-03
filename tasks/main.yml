@@ -23,7 +23,9 @@
   notify: restart prosody
 
 - name: Create parameters for Diffie–Hellman (could take a while)
-  command: "openssl dhparam -out /etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem {{ prosody_dhparam_length }} creates=/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem"
+  command: "openssl dhparam -out /etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem {{ prosody_dhparam_length }}"
+  args:
+    creates: "/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem"
   notify: restart prosody
 
 - name: Get prosody external modules repository
