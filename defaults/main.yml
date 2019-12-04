@@ -20,3 +20,5 @@ prosody_authentication: internal_hashed
 prosody_dhparam_length: 2048
 prosody_hosts:
   - domain: localhost
+prosody_key: /etc/prosody/certs/localhost.key
+prosody_cert: /etc/prosody/certs/localhost.crt

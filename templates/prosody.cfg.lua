@@ -81,8 +81,8 @@ allow_registration = {{ bool(prosody_allow_registration) }}
 -- These are the SSL/TLS-related settings. If you don't want
 -- to use SSL/TLS, you may comment or remove this
 ssl = {
-	key = "/etc/prosody/certs/localhost.key";
-	certificate = "/etc/prosody/certs/localhost.crt";
+	key = "{{ prosody_key }}";
+	certificate = "{{ prosody_cert }}";
 	dhparam = "/etc/prosody/certs/dh-{{ prosody_dhparam_length }}.pem";
 {% if prosody_ssl_protocol is defined %}
 	protocol = "{{ prosody_ssl_protocol }}";
@@ -149,6 +149,13 @@ log = {
 	"*syslog";
 }
 
+{% if prosody_configuration_blocks is defined %}
+{% for config_block in prosody_configuration_blocks %}
+{{ config_block.comment | comment(decoration="--") }}
+{{ config_block.conf }}
+{% endfor %}
+{% endif %}
+
 ----------- Virtual hosts -----------
 -- You need to add a VirtualHost entry for each domain you wish Prosody to serve.
 -- Settings under each VirtualHost entry apply *only* to that host.
@@ -182,3 +189,12 @@ VirtualHost "{{ host.domain }}"
 --
 --Component "gateway.example.com"
 --	component_secret = "password"
+
+{% if prosody_components is defined %}
+{% for component in prosody_components %}
+Component "{{ component.domain }}" "{{ component.type }}"
+{% if component.conf is defined %}
+    {{ component.conf }}
+{% endif %}
+{% endfor %}
+{% endif %}
