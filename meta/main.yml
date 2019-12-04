@@ -16,5 +16,7 @@ galaxy_info:
   galaxy_tags:
     - networking
     - chat
+    - xmpp
+    - jabber
 
 dependencies: []
