@@ -38,7 +38,7 @@ use_libevent = true
 
 {% if prosody_external_modules |length > 0 %}
 -- These paths are searched in the order specified, and before the default path
-plugin_paths = { "/usr/share/prosody-external-modules" }
+plugin_paths = { "{{ prosody_external_modules_path }}" }
 {% endif %}
 
 -- This is the list of modules Prosody will load on startup.
@@ -55,6 +55,11 @@ modules_enabled = {
 
 	-- Other modules
 {% for module in prosody_modules %}
+	"{{ module }}";
+{% endfor %}
+
+	-- External modules
+{% for module in prosody_external_modules %}
 	"{{ module }}";
 {% endfor %}
 

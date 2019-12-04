@@ -33,7 +33,7 @@
     repo: https://hg.prosody.im/prosody-modules/
     revision: default
     update: true
-    dest: /usr/share/prosody-external-modules
+    dest: "{{ prosody_external_modules_path }}"
   tags:
     - skip_ansible_lint
 
