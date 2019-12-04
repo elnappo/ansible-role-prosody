@@ -48,6 +48,22 @@ None.
     prosody_ssl_ciphers: "ECDH:DH:!CAMELLIA128:!AES128:!SHA1:!3DES:!MD5:!RC4:!aNULL:!NULL:!EXPORT:!LOW:!MEDIUM"
     prosody_ssl_protocol: tlsv1_2+ # tlsv1_2+ supported since Prosody 0.10
     prosody_dhparam_length: 4096
+    prosody_components:
+      - domain: rooms.example.org
+        type: muc
+        conf: |
+          name = "The example.org chatrooms server"
+          modules_enabled = { "muc_mam", "vcard_muc" }
+          ssl = {
+              key = "/etc/prosody/certs/rooms.example.org.key";
+              certificate = "/etc/prosody/certs/rooms.example.org.crt";
+          }
+    prosody_modules:
+      - motd
+    prosody_configuration_blocks:
+      - comment: motd
+        conf: |
+          motd_text = "Welcome on example.org !"
 
   roles:
    - elnappo.prosody
