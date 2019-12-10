@@ -22,3 +22,4 @@ prosody_hosts:
   - domain: localhost
 prosody_key: /etc/prosody/certs/localhost.key
 prosody_cert: /etc/prosody/certs/localhost.crt
+prosody_libevent: true

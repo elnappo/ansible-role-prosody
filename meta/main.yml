@@ -13,6 +13,9 @@ galaxy_info:
       versions:
         - jessie
         - stretch
+    - name: OpenBSD
+      versions:
+        - 6.5
   galaxy_tags:
     - networking
     - chat

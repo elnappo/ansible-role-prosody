@@ -1,0 +1,5 @@
+---
+- name: OpenBSD - Install Prosody and dependencies
+  package:
+    name: ['{{ prosody_package }}', mercurial]
+    state: present

@@ -1,0 +1,6 @@
+---
+prosody_setup_ufw: false
+prosody_user: _prosody
+prosody_group: _prosody
+prosody_libevent: false
+prosody_external_modules_path: /usr/local/lib/prosody/external_modules

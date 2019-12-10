@@ -25,6 +25,7 @@ Ubuntu or Debian
 * `prosody_configuration_blocks: []`
 * `prosody_key: /etc/prosody/certs/localhost.key`
 * `prosody_cert: /etc/prosody/certs/localhost.crt`
+* `prosody_libevent: true`
 
 ### Optional Role Variables (with sample values)
 
