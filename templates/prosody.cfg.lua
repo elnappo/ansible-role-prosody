@@ -121,7 +121,7 @@ s2s_secure_auth = {{ bool(prosody_s2s_secure_auth) }}
 s2s_secure_domains = { {{ quoted_list(prosody_s2s_secure_domains) }} }
 
 -- Required for init scripts and prosodyctl
-pidfile = "/var/run/prosody/prosody.pid"
+pidfile = "/var/prosody/prosody.pid"
 
 -- Select the authentication backend to use. The 'internal' providers
 -- use Prosody's configured data storage to store the authentication data.
