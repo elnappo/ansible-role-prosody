@@ -1,0 +1,13 @@
+---
+- name: Debian - Add Prosody repository key
+  apt_key:
+    url: https://prosody.im/files/prosody-debian-packages.key
+    state: present
+
+- name: Debian - Add Prosody repository
+  apt_repository:
+    repo: "deb http://packages.prosody.im/debian {{ ansible_distribution_release }} main"
+
+- name: Debian - Install Prosody and dependencies
+  apt:
+    name: ['mercurial', 'lua-event', 'lua-zlib', '{{ prosody_package }}']
